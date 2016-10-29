@@ -10,6 +10,6 @@
 
 @interface Album : NSObject
 
--(bool)save;
+-(BOOL)save;
 
 @end

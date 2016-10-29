@@ -16,7 +16,8 @@
 		03C0B8CF1DC40A8000B4A241 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C0B8CE1DC40A8000B4A241 /* Album.m */; };
 		03C0B8D21DC40A9400B4A241 /* ExternalAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C0B8D11DC40A9400B4A241 /* ExternalAPI.m */; };
 		03C0B8D51DC40CAC00B4A241 /* SomeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C0B8D41DC40CAC00B4A241 /* SomeManager.m */; };
-		03C0B8D71DC40F7700B4A241 /* AlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0B8D61DC40F7700B4A241 /* AlbumTests.swift */; };
+		03C0B8DE1DC412E100B4A241 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C0B8DD1DC412E100B4A241 /* libOCMock.a */; };
+		03C0B8E01DC41BEE00B4A241 /* AlbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C0B8DF1DC41BEE00B4A241 /* AlbumTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +49,8 @@
 		03C0B8D11DC40A9400B4A241 /* ExternalAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalAPI.m; sourceTree = "<group>"; };
 		03C0B8D31DC40CAC00B4A241 /* SomeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomeManager.h; sourceTree = "<group>"; };
 		03C0B8D41DC40CAC00B4A241 /* SomeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomeManager.m; sourceTree = "<group>"; };
-		03C0B8D61DC40F7700B4A241 /* AlbumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTests.swift; sourceTree = "<group>"; };
-		03C0B8D81DC410D900B4A241 /* UnitTesterTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTesterTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		03C0B8DD1DC412E100B4A241 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = vendor/libOCMock.a; sourceTree = "<group>"; };
+		03C0B8DF1DC41BEE00B4A241 /* AlbumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C0B8DE1DC412E100B4A241 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +78,7 @@
 				03C0B8A31DC408D700B4A241 /* UnitTester */,
 				03C0B8C01DC4096A00B4A241 /* UnitTesterTests */,
 				03C0B8A21DC408D700B4A241 /* Products */,
+				03C0B8DC1DC412E100B4A241 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,8 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				03C0B8C31DC4096A00B4A241 /* Info.plist */,
-				03C0B8D61DC40F7700B4A241 /* AlbumTests.swift */,
-				03C0B8D81DC410D900B4A241 /* UnitTesterTests-Bridging-Header.h */,
+				03C0B8DF1DC41BEE00B4A241 /* AlbumTests.m */,
 			);
 			path = UnitTesterTests;
 			sourceTree = "<group>";
@@ -134,6 +136,14 @@
 				03C0B8D41DC40CAC00B4A241 /* SomeManager.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		03C0B8DC1DC412E100B4A241 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03C0B8DD1DC412E100B4A241 /* libOCMock.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,7 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03C0B8D71DC40F7700B4A241 /* AlbumTests.swift in Sources */,
+				03C0B8E01DC41BEE00B4A241 /* AlbumTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,8 +414,14 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/vendor";
 				INFOPLIST_FILE = UnitTesterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lumobodyech.UnitTesterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -421,8 +437,14 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/vendor";
 				INFOPLIST_FILE = UnitTesterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lumobodyech.UnitTesterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "UnitTesterTests/UnitTesterTests-Bridging-Header.h";

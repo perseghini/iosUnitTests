@@ -25,14 +25,16 @@
     
 }
 
--(bool)save{
+-(BOOL)save{
     NSDictionary *res = [ExternalAPI pushData];
-    if([res[@"result"] isEqualToString:@"ok"]){
+    if([res[@"result"] isEqualToString:@"OK"]){
         return YES;
     }
     else{
-        [self.someManager notify:12];
+        NSInteger code = [res[@"code"] integerValue];
+        [self.someManager notify:code];
         return NO;
     }
+    
 }
 @end
